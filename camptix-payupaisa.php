@@ -1,10 +1,10 @@
 <?php
 /**
  * Plugin Name: CampTix PayU Money Payment Gateway
- * Plugin URI: https://www.kdclabs.com/?p=111
+ * Plugin URI: https://github.com/arvindsinghu/camptix-payumoney/
  * Description: PayU Paisa Payment Gateway for CampTix
- * Author: Vachan Kudmule (_KDC-Labs)
- * Author URI: http://www.kdclabs.com/
+ * Author: arvindsinghu
+ * Author URI: http://www.newwayenter.com/
  * Version: 1.1.0
  * License: GPLv2 or later
  */
