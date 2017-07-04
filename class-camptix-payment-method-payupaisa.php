@@ -27,7 +27,7 @@ class CampTix_Payment_Method_PayuPaisa extends CampTix_Payment_Method {
 
 	function camptix_init() {
 		$this->options = array_merge( array(
-			'merchant_key' => '',
+			'merchant_key' => '',              //acepting keys and salt
 			'merchant_salt' => '',
 			'sandbox' => true
 		), $this->get_payment_options() );
@@ -37,7 +37,7 @@ class CampTix_Payment_Method_PayuPaisa extends CampTix_Payment_Method {
 	}
 
 	function payment_settings_fields() {
-		$this->add_settings_field_helper( 'merchant_key', 'Merchant KEY', array( $this, 'field_text' ) );
+		$this->add_settings_field_helper( 'merchant_key', 'Merchant KEY', array( $this, 'field_text' ) ); 
 		$this->add_settings_field_helper( 'merchant_salt', 'Merchant SALT', array( $this, 'field_text' ) );
 		$this->add_settings_field_helper( 'sandbox', __( 'Sandbox Mode', 'camptix' ), array( $this, 'field_yesno' ),
 			__( "The Test Mode is a way to test payments. Any amount debited from your account will be re-credited within Five (5) working days.", 'camptix' )
@@ -63,13 +63,13 @@ class CampTix_Payment_Method_PayuPaisa extends CampTix_Payment_Method {
 			return;
 
 		if ( isset( $_GET['tix_action'] ) ) {
-			if ( 'payment_cancel' == $_GET['tix_action'] )
+			if ( 'payment_cancel' == $_GET['tix_action'] )               // Payment canceled 
 				$this->payment_cancel();
 
-			if ( 'payment_return' == $_GET['tix_action'] )
+			if ( 'payment_return' == $_GET['tix_action'] )               // Payment Back 
 				$this->payment_return();
 
-			if ( 'payment_notify' == $_GET['tix_action'] )
+			if ( 'payment_notify' == $_GET['tix_action'] )        
 				$this->payment_notify();
 		}
 	}
@@ -218,10 +218,10 @@ class CampTix_Payment_Method_PayuPaisa extends CampTix_Payment_Method {
 			'hash' 			=> $hash,
 			'txnid' 		=> $payment_token,
 			'amount' 		=> $order_amount,
-			'firstname'		=> 'FirstName',
-			'email' 		=> 'email@domain.ext',
+			'firstname'		=> '$attendee_info[2]',
+			'email' 		=> '$attendee_info[1]',
 			'phone' 		=> '1234567890',
-			'productinfo'	=> $productinfo,
+			'productinfo'	        => $productinfo,
 			'surl' 			=> $return_url,
 			'furl' 			=> $notify_url,
 			'lastname' 		=> 'LastName',
@@ -232,7 +232,6 @@ class CampTix_Payment_Method_PayuPaisa extends CampTix_Payment_Method {
 			'country' 		=> 'country',
 			'zipcode' 		=> 'postcode',
 			'curl'			=> $cancel_url,
-			'pg' 			=> 'NB',
 			'udf1' 			=> $payment_token,
 			'service_provider'	=> 'payu_paisa' // must be "payu_paisa"
 		);
