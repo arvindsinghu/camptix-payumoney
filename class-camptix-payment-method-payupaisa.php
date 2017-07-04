@@ -8,7 +8,7 @@
  * @since		1.0
  * @package		CampTix
  * @category	Class
- * @author 		Vachan Kudmule (_KDC-Labs)
+ * @author 		arvindsinghu
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
